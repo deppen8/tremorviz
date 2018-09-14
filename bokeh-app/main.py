@@ -46,7 +46,7 @@ def update_plot():
     unselected_data_source.data.update(src['unselected'].data)
 
 df0 = pd.read_pickle(join(dirname(__file__), 'data', 'tremors.pkl'))
-df = df0.sample(frac=0.25)
+df = df0.sample(frac=0.1)
 
 
 date_slider = DateSlider(start=df['date'].min(), end=df['date'].max(), step=100, value=df['date'].min())
