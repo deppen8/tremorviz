@@ -16,16 +16,16 @@ def make_plot(selected_data_source, unselected_data_source):
     xmin, xmax = df0.merc_long.min(), df0.merc_long.max()
     ymin, ymax = df0.merc_lat.min(), df0.merc_lat.max()
 
-    top = figure(tools=tools, toolbar_location='right', plot_width=600, plot_height=500, title='Tremor locations', x_range=(xmin, xmax), y_range=(ymin, ymax),
+    top = figure(tools=tools, plot_width=600, plot_height=500, title='Tremor locations', x_range=(xmin, xmax), y_range=(ymin, ymax),
                x_axis_type="mercator", y_axis_type="mercator")
     top.add_tile(CARTODBPOSITRON)
     top.circle('merc_long', 'merc_lat', source=unselected_data_source, color='gray', alpha=0.2)
     top.circle('merc_long', 'merc_lat', source=selected_data_source, color='red', alpha=1.0)#, view=view)
 
-    bottom = figure(plot_width=600, plot_height=200, title=None, x_axis_type="datetime")
+    bottom = figure(plot_width=600, plot_height=80, title=None, x_axis_type="datetime")
     bottom.line('date', 'value', source=ColumnDataSource(df0), color='red', alpha=0.8)
 
-    p = gridplot([[top], [bottom]])
+    p = gridplot([[top], [bottom]], toolbar_location='right')
     
     return p
 
